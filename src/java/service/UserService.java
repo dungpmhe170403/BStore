@@ -26,9 +26,8 @@ public class UserService {
 
     public User authenticate(String email, String password) {
         ArrayList<User> userRecords = userRepository.getByEmailAndPassword(email, password);
-        return userRecords.size() > 0 ? userRecords.get(0) : null;
+        return !userRecords.isEmpty() ? userRecords.get(0) : null;
     }
-
     public int update(int id, User updated) {
         return this.userRepository.update(updated, "user_id=" + id, "password =" + wrapInQuote(updated.getPassword()));
     }
