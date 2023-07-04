@@ -11,16 +11,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
-@WebServlet(name = "Login", urlPatterns = {"/login"})
+@WebServlet(name = "Register", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
     HashMap<String, Object> viewStatus;
     UserService userService;
 
     public void init() {
         // init dependency here
-        viewStatus = new HashMap<String,Object>() {{
+        viewStatus = new HashMap<String, Object>() {{
             put("isLogin", true);
             // if has some validtion use viewStatus to push more
         }};
@@ -33,7 +35,7 @@ public class Login extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (!Helper.isEmptyParamsInRequest(request, "email", "password")) {
+        if (!Helper.isEmptyParamsInRequest(request, new ArrayList<>(Arrays.asList("email", "password")))) {
             String email = request.getParameter("email");
             String password = request.getParameter("password");
             User authenticatedUser = userService.authenticate(email, password);
@@ -45,7 +47,7 @@ public class Login extends HttpServlet {
                 return;
             }
         }
-        response.sendRedirect(request.getContextPath()+"/login");
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 
     public void destroy() {

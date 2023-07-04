@@ -1,4 +1,4 @@
-package com.example.demo.controller.auth;
+package controller.auth;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

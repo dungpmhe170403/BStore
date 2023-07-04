@@ -1,0 +1,1 @@
+<h1 class="mx-auto text-center">NOT FOUND</h1>

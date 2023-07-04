@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%--<!DOCTYPE html>--%>
+<c:set var="user" value="${sessionScope.user}"/>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -16,6 +18,9 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/test.css">
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+
 </head>
 <body>
 <%--header--%>
@@ -31,19 +36,32 @@
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
-            <a href=<%= (session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")) ? "./logout" : "./login" %>><i
-                    class="fa fa-user"></i>
-                <% if (session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")) { %>
-                Logout
-                <% } else { %>
-                Login
-                <% } %></a>
+            <c:choose>
+                <c:when test="${sessionScope.loggedIn eq true}">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle"
+                                data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user">${user.username}</i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" data-toggle="modal"
+                               data-target="#exampleModal">Edit Profile</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="./logout">Logout</a>
+                        </div>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <a href="./login"><i class="fa fa-user">Login</i></a>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
             <li class="active"><a href="./home">Home</a></li>
-            <li><a href="./shop-grid.html">Shop</a></li>
+            <li><a href="./products">Shop</a></li>
             <li><a href="./shoping-cart.html">Shoping Cart</a></li>
             <li><a href="./checkout.html">Check Out</a></li>
             </li>
@@ -87,13 +105,26 @@
                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                         <div class="header__top__right__auth">
-                            <a href=<%= (session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")) ? "./logout" : "./login" %>><i
-                                    class="fa fa-user"></i>
-                                <% if (session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")) { %>
-                                Logout
-                                <% } else { %>
-                                Login
-                                <% } %></a>
+                            <c:choose>
+                                <c:when test="${sessionScope.loggedIn eq true}">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning dropdown-toggle"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-user">${user.username}</i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                               data-target="#exampleModal">Edit Profile</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="./logout">Logout</a>
+                                        </div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="./login"><i class="fa fa-user">Login</i></a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
@@ -111,7 +142,7 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="active"><a href="./home">Home</a></li>
-                        <li><a href="./shop-grid.html">Shop</a></li>
+                        <li><a href="./products">Shop</a></li>
                         <li><a href="./shoping-cart.html">Shoping Cart</a></li>
                         <li><a href="./checkout.html">Check Out</a></li>
                     </ul>
@@ -140,8 +171,9 @@
                         <span>All Brands</span>
                     </div>
                     <ul>
-                        <li><a href="#">Adidas</a></li>
-                        <li><a href="#">Nike</a></li>
+                        <c:forEach var="brand" items="${data['brands']}">
+                            <li><a href="./products?page=1&brands=${brand.brand_id}">${brand.brand_name}</a></li>
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -168,7 +200,7 @@
                         <span>FRESH SHOES</span>
                         <h2>SHOES <br/>100% Authentic</h2>
                         <p>Free Pickup and Delivery Available</p>
-                        <a href="#" class="primary-btn">SHOP NOW</a>
+                        <a href="./products" class="primary-btn">SHOP NOW</a>
                     </div>
                 </div>
             </div>
@@ -182,34 +214,34 @@
                 <div class="col-lg-3">
                     <!-- TODO: brand Image click to go the filter by brand -->
                     <div class="categories__item set-bg" data-setbg="img/brands/Adidas.png">
-                        <h5><a href="#">Adidas</a></h5>
+                        <h5><a href="./products?page=1&brand=2">Adidas</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="img/brands/Nike.png">
-                        <h5><a href="#">Nike</a></h5>
+                        <h5><a href="./products?page=1&brand=3">Nike</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="img/brands/Puma.png">
-                        <h5><a href="#">Pulma</a></h5>
+                        <h5><a href="./products?page=1&brand=4">Pulma</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="img/brands/Under-Armour.png">
-                        <h5><a href="#">Under Amor</a></h5>
+                        <h5><a href="./products?page=1&brand=5">Under Amor</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="img/brands/New-Balance.png">
-                        <h5><a href="#">New Blance</a></h5>
+                        <h5><a href="./products?page=1&brand=6">New Blance</a></h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<jsp:include page="views/${view}"/>
+<jsp:include page="views/${data['view']}"/>
 <footer class="footer spad">
     <div class="container">
         <div class="row">
@@ -244,9 +276,77 @@
         </div>
     </div>
 </footer>
+<% String updatedStatus = (String) session.getAttribute("userEditResult"); %>
+<% if (updatedStatus != null) { %>
+<div style="position: absolute; top: 0; right: 0;">
+
+    <!-- Then put toasts within -->
+    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="mr-auto">Update Status</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            <%= updatedStatus %>
+
+        </div>
+    </div>
+</div>
+<% session.removeAttribute("userEditResult"); %>
+<% } %>
+
+<!-- Position it -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit ${user.username}'s Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="./edit-user">
+                    <div class="form-group">
+                        <input hidden value="${user.role}" name="role">
+                        <input hidden value="${user.user_id}" name="user_id">
+                        <label for="usernameedit" class="col-form-label">Username:</label>
+                        <input type="text" class="form-control" value="${user.username}" id="usernameedit"
+                               name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control" id="edit-email" readonly value="${user.email}"
+                               name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="address-text" class="col-form-label">Address:</label>
+                        <input class="form-control" id="address-text" type="text"
+                               value="${user.address == null ? "": user.address}" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="password-edit" class="col-form-label">Enter password to confirm:</label>
+                        <input class="form-control" id="password-edit" type="text" name="password" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="./change-password">change your password ?</a>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
 <script src="js/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/jquery.slicknav.js"></script>
 <script src="js/mixitup.min.js"></script>

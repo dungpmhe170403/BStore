@@ -1,9 +1,13 @@
 package service;
 
 import model.entity.User;
-import model.UserRepository;
+import model.repository.UserRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static ultis.Helper.wrapInQuote;
 
 public class UserService {
     private UserRepository userRepository;
@@ -17,11 +21,19 @@ public class UserService {
     }
 
     public boolean checkEmailIsUnique(String email) {
-        return !userRepository.getByEmail(email).isEmpty();
+        return userRepository.getByEmail(email) == null;
     }
 
     public User authenticate(String email, String password) {
         ArrayList<User> userRecords = userRepository.getByEmailAndPassword(email, password);
-        return !userRecords.isEmpty() ? userRecords.get(0) : null;
+        return userRecords.size() > 0 ? userRecords.get(0) : null;
+    }
+
+    public int update(int id, User updated) {
+        return this.userRepository.update(updated, "user_id=" + id, "password =" + wrapInQuote(updated.getPassword()));
+    }
+
+    public User get(int id) {
+        return userRepository.get(id);
     }
 }
