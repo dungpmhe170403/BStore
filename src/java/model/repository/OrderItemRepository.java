@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OrderItemRepository extends Repository<OrderItem> {
+
     private static OrderItemRepository orderItemRepository;
     ProductRepository productRepository;
     ProductImageRepository productImageRepository;

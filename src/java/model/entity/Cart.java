@@ -10,6 +10,7 @@ import java.util.ArrayList;
 @Builder
 @Setter
 public class Cart {
+
     Integer cart_id;
     Integer user_id;
     ArrayList<OrderItem> items;

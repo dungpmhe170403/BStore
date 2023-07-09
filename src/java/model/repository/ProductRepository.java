@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class ProductRepository extends Repository<Product> {
+
     private static ProductRepository productRepository;
     HashMap<String, Product> productMap;
     ProductImageRepository productImageRepository;

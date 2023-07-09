@@ -8,12 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.entity.Cart;
 import model.entity.OrderItem;
-import model.entity.Product;
 import model.entity.User;
-import model.repository.OrderItemRepository;
 import service.CartService;
 import service.OrderItemService;
-import service.ProductService;
 import service.ViewService;
 
 import java.io.IOException;
@@ -23,6 +20,7 @@ import java.util.HashMap;
 
 @WebServlet(name = "Cart", urlPatterns = {"/cart"})
 public class CartController extends HttpServlet {
+
     HashMap<String, Object> viewData = new HashMap<>();
 
     CartService cartService;
@@ -98,7 +96,6 @@ public class CartController extends HttpServlet {
         String id = req.getParameter("id");
         System.out.println(id);
         if (id != null) {
-            System.out.println("asjdhasjkdhaskjd");
             int order_id = Integer.parseInt(id);
             int result = this.orderItemService.delete(order_id);
             if (result > 0) {

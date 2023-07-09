@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 @WebServlet(name = "Home", urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
+
     HashMap<String, Object> viewData = new HashMap<>();
     ProductService productService;
 

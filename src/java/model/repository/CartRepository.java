@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class CartRepository extends Repository<Cart> {
+
     private static CartRepository cartRepository;
     private static OrderItemRepository orderItemRepository;
 

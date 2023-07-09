@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ProductImageRepository extends Repository<ProductImage> {
+
     private static ProductImageRepository productImageRepository;
 
     public static ProductImageRepository getInstance() {

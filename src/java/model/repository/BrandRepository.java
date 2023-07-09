@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class BrandRepository extends Repository<Brands> {
+
     private static BrandRepository brandRepository;
 
     public static BrandRepository getInstance() {
