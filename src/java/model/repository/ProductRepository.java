@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class ProductRepository extends Repository<Product> {
-
     private static ProductRepository productRepository;
     HashMap<String, Product> productMap;
     ProductImageRepository productImageRepository;
@@ -32,6 +31,7 @@ public class ProductRepository extends Repository<Product> {
         table("products");
         fillable("name", "price", "brand", "description");
         this.init();
+        productMap = new HashMap<>();
         productImageRepository = ProductImageRepository.getInstance();
         // always join to get image
         this.queryHelper.select("*").innerJoin("shoes_images", "products.id = shoes_images.shoes_id").joinned();
@@ -93,7 +93,7 @@ public class ProductRepository extends Repository<Product> {
             System.out.println(queryHelper.queryBuilder.toString() + "Add orderBy");
         }
         QueryHelper paginationLimit = tempSql.offsetCount(pagination.offset * 3).limit(pagination.limit * 3);
-        Optional<ArrayList<Integer>> rows = new QueryExecutor<Integer>().records(getCount.build(), rs -> rs.getInt(1));
+        var rows = new QueryExecutor<Integer>().records(getCount.build(), rs -> rs.getInt(1));
         pagination.totalItems = rows.map(data -> data.get(0)).orElse(0);
         pagination.calculateTotalPages();
         ArrayList<Product> products = getProducts(paginationLimit.build()).orElse(new ArrayList<>());
@@ -108,7 +108,7 @@ public class ProductRepository extends Repository<Product> {
     }
 
     public ArrayList<Product> getLatestProduct() {
-        QueryHelper sql = queryHelper.copy();
+        var sql = queryHelper.copy();
         sql.orderBy("created_at", SortOrder.DESC).limit(8 * 3);
         return getProducts(sql.build()).orElse(new ArrayList<>());
     }

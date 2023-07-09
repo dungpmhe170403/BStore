@@ -71,6 +71,11 @@ public class QueryHelper {
         return this;
     }
 
+    public QueryHelper delete() {
+        queryBuilder.append("DELETE ").append(table);
+        return this;
+    }
+
     public QueryHelper limit(int lim) {
         recordLimited = true;
         limitedRecord = lim;

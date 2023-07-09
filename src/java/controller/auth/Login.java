@@ -15,14 +15,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-@WebServlet(name = "Register", urlPatterns = {"/login"})
+@WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
     HashMap<String, Object> viewStatus;
     UserService userService;
 
     public void init() {
         // init dependency here
-        viewStatus = new HashMap<String, Object>() {{
+        viewStatus = new HashMap<>() {{
             put("isLogin", true);
             // if has some validtion use viewStatus to push more
         }};

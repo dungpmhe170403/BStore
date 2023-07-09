@@ -18,7 +18,7 @@ import java.util.HashMap;
 public class ProductController extends HttpServlet {
     HashMap<String, Object> viewData = new HashMap<>();
     ProductService productService;
-//req->controller<->service<->repostiry<->Database
+
     public void init() {
         ViewService viewService = ViewService.getInstance();
         viewData.put("brands", viewService.getAllBrands());

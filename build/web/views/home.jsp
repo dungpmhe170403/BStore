@@ -14,7 +14,8 @@
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/products/${item.images[0].image_path}">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="./product-detail?id=${item.id}"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="./product-detail?id=${item.id}"><i class="fa fa-shopping-cart"></i></a>
+                                </li>
                             </ul>
                         </div>
                         <div class="featured__item__text">

@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6" id="product-detail">
-                <div class="product__details__text" >
+                <div class="product__details__text">
                     <h3>${data['product'].name}</h3>
                     <div class="product__details__rating">
                         <i class="fa fa-star"></i>
@@ -46,7 +46,10 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="primary-btn">ADD TO CARD</a>
+                    <form action="./cart" method="post">
+                        <input name="shoes_id" value="${data['product'].id}" hidden/>
+                        <button type="submit" class="primary-btn">ADD TO CARD</button>
+                    </form>
                     <a href="#" class="heart-icon"
                     ><span class="icon_heart_alt"></span
                     ></a>

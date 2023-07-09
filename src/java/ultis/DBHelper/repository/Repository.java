@@ -48,4 +48,6 @@ public class Repository<T> extends Model implements EntityMapper<T> {
         }
         return queryExecutor.updateQuery(queryHelper.endCondition().build());
     }
+
+
 }

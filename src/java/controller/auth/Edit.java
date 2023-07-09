@@ -13,14 +13,14 @@ import ultis.Helper;
 import java.io.IOException;
 import java.util.HashMap;
 
-@WebServlet(name = "Edit", urlPatterns = {"/edit-user"})
+@WebServlet(name = "edit", urlPatterns = {"/edit-user"})
 public class Edit extends HttpServlet {
     HashMap<String, Object> viewStatus;
     UserService userService;
 
     public void init() {
         // init dependency here
-        viewStatus = new HashMap<String,Object>() {{
+        viewStatus = new HashMap<>() {{
             // if has some validtion use viewStatus to push more
         }};
         userService = new UserService();

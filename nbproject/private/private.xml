@@ -3,22 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/BStore/src/java/model/repository/UserRepository.java</file>
-            <file>file:/D:/BStore/src/java/service/UserService.java</file>
-            <file>file:/D:/BStore/src/java/model/entity/Product.java</file>
-            <file>file:/D:/BStore/src/java/service/ProductService.java</file>
-            <file>file:/D:/BStore/src/java/ultis/DBHelper/model/Model.java</file>
-            <file>file:/D:/BStore/src/java/ultis/DBHelper/executor/QueryExecutor.java</file>
-            <file>file:/D:/BStore/src/java/controller/ProductController.java</file>
-            <file>file:/D:/BStore/web/layout.jsp</file>
-            <file>file:/D:/BStore/src/java/controller/auth/SignUp.java</file>
-            <file>file:/D:/BStore/src/java/controller/auth/Login.java</file>
-            <file>file:/D:/BStore/src/java/controller/auth/Logout.java</file>
-            <file>file:/D:/BStore/src/java/controller/auth/Edit.java</file>
-            <file>file:/D:/BStore/src/java/model/entity/Brands.java</file>
-            <file>file:/D:/BStore/web/views/home.jsp</file>
-            <file>file:/D:/BStore/src/java/controller/HomeController.java</file>
-            <file>file:/D:/BStore/src/java/ultis/DBHelper/bound/EntityMapper.java</file>
             <file>file:/D:/BStore/src/java/ultis/DBHelper/repository/Repository.java</file>
         </group>
     </open-files>

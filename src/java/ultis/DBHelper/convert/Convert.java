@@ -24,7 +24,7 @@ public class Convert {
             }
             count++;
         }
-        return new HashMap<String, String>() {{
+        return new HashMap<>() {{
             put("columns", String.valueOf(keysString));
             put("values", String.valueOf(valuesString));
         }};
