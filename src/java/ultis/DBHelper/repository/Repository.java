@@ -5,7 +5,6 @@ import ultis.DBHelper.convert.Convert;
 import ultis.DBHelper.executor.QueryExecutor;
 import ultis.DBHelper.model.Model;
 import ultis.DBHelper.query.QueryHelper;
-import ultis.Helper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +24,6 @@ public class Repository<T> extends Model implements EntityMapper<T> {
         queryHelper = new QueryHelper("", table);
         queryExecutor = new QueryExecutor<>();
     }
-
     @Override
     public T mapper(ResultSet rs) throws SQLException {
         return null;

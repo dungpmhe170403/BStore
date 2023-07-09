@@ -5,11 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.entity.OrderItem;
 import model.entity.Product;
-import model.entity.User;
-import service.CartService;
 import service.ProductService;
 import service.ViewService;
 

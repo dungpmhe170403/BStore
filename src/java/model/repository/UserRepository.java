@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class UserRepository extends Repository<User> {
+
     private static UserRepository userRepository;
     private static CartRepository cartRepository;
 
@@ -40,7 +41,7 @@ public class UserRepository extends Repository<User> {
 
     public User get(int id) {
         String sql = userRepository.queryHelper.select("*").where().condition("user_id = " + id).endCondition().build();
-        var records = queryExecutor.records(sql, this);
+        Optional<ArrayList<User>> records = queryExecutor.records(sql, this);
         return records.map(users -> users.get(0)).orElse(null);
     }
 
@@ -52,7 +53,7 @@ public class UserRepository extends Repository<User> {
                 .condition(String.format("email LIKE '%s'", email))
                 .endCondition()
                 .build();
-        var records = queryExecutor.records(sql, this);
+        Optional<ArrayList<User>> records = queryExecutor.records(sql, this);
         return records.map(users -> users.get(0)).orElse(null);
     }
 
@@ -63,7 +64,7 @@ public class UserRepository extends Repository<User> {
                 .condition("password =" + password)
                 .endCondition()
                 .build();
-        var records = queryExecutor.records(sql, this);
+        Optional<ArrayList<User>> records = queryExecutor.records(sql, this);
         return records.orElse(new ArrayList<>());
     }
 

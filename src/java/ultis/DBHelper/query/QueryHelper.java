@@ -7,8 +7,8 @@ import java.util.*;
 import static ultis.DBHelper.convert.Convert.convertKeyValueToColumnAndValues;
 import static ultis.DBHelper.convert.Convert.keysValuesJoin;
 
-
 public class QueryHelper {
+
     public StringBuilder queryBuilder;
     private String table;
     private boolean isFirstOrderBy;

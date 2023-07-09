@@ -1,15 +1,10 @@
 package model.entity;
 
 import lombok.*;
-import ultis.DBHelper.bound.EntityMapper;
-import ultis.DBHelper.model.Model;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 @Data
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @Builder
 public class User {

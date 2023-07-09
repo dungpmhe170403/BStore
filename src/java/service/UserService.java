@@ -4,8 +4,6 @@ import model.entity.User;
 import model.repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static ultis.Helper.wrapInQuote;
 

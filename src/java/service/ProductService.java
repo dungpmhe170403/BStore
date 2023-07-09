@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProductService {
+
     ProductRepository productRepository;
 
     public ProductService() {
@@ -28,6 +29,5 @@ public class ProductService {
     public Product getProduct(int id) {
         return productRepository.getProduct(id);
     }
-
 
 }

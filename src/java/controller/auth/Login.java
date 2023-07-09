@@ -17,15 +17,18 @@ import java.util.HashMap;
 
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
+
     HashMap<String, Object> viewStatus;
     UserService userService;
 
     public void init() {
         // init dependency here
-        viewStatus = new HashMap<>() {{
-            put("isLogin", true);
-            // if has some validtion use viewStatus to push more
-        }};
+        viewStatus = new HashMap<String, Object>() {
+            {
+                put("isLogin", true);
+                // if has some validtion use viewStatus to push more
+            }
+        };
         userService = new UserService();
     }
 

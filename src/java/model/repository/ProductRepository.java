@@ -93,7 +93,7 @@ public class ProductRepository extends Repository<Product> {
             System.out.println(queryHelper.queryBuilder.toString() + "Add orderBy");
         }
         QueryHelper paginationLimit = tempSql.offsetCount(pagination.offset * 3).limit(pagination.limit * 3);
-        var rows = new QueryExecutor<Integer>().records(getCount.build(), rs -> rs.getInt(1));
+        Optional<ArrayList<Integer>> rows = new QueryExecutor<Integer>().records(getCount.build(), rs -> rs.getInt(1));
         pagination.totalItems = rows.map(data -> data.get(0)).orElse(0);
         pagination.calculateTotalPages();
         ArrayList<Product> products = getProducts(paginationLimit.build()).orElse(new ArrayList<>());
@@ -108,7 +108,7 @@ public class ProductRepository extends Repository<Product> {
     }
 
     public ArrayList<Product> getLatestProduct() {
-        var sql = queryHelper.copy();
+        QueryHelper sql = queryHelper.copy();
         sql.orderBy("created_at", SortOrder.DESC).limit(8 * 3);
         return getProducts(sql.build()).orElse(new ArrayList<>());
     }

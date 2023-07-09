@@ -4,31 +4,19 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.*;
 
 public class Helper {
-    public static String getValueFromAppProperties(String property) {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("app.properties");
 
-        try {
-            Properties properties = new Properties();
+    public static String getValueFromAppProperties(String property) {
+        Properties properties = new Properties();
+        try ( InputStream inputStream = Helper.class.getClassLoader().getResourceAsStream("config/app.properties")) {
             properties.load(inputStream);
-            return properties.getProperty(property);
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            System.out.println(e);
         }
-        return null;
+        return properties.getProperty(property);
     }
 
     public static HashMap<String, Object> convertToHashMap(Object obj, String... fillable) {
@@ -48,7 +36,6 @@ public class Helper {
                     // Put the field name and value into the HashMap
                     hashMap.put(field.getName(), value);
                 }
-
 
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -75,7 +62,6 @@ public class Helper {
                     // Put the field name and value into the HashMap
                     hashMap.put(field.getName(), value);
                 }
-
 
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -180,10 +166,12 @@ public class Helper {
             }
             count++;
         }
-        return new HashMap<String,String>() {{
-            put("columns", String.valueOf(keysString));
-            put("values", String.valueOf(valuesString));
-        }};
+        return new HashMap<String, String>() {
+            {
+                put("columns", String.valueOf(keysString));
+                put("values", String.valueOf(valuesString));
+            }
+        };
     }
 
     public static String wrapInQuote(String value) {
