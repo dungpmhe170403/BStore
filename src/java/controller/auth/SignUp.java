@@ -16,7 +16,6 @@ public class SignUp extends HttpServlet {
 
     HashMap<String, Object> viewStatus;
     UserService userService;
-
     public void init() {
         // init dependency here
         viewStatus = new HashMap<String, Object>() {

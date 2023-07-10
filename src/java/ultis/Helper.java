@@ -177,4 +177,9 @@ public class Helper {
     public static String wrapInQuote(String value) {
         return String.format("'%s'", value);
     }
+    
+    public static void main(String[] args) {
+        String rs = 1 == 2 ? "2 thang bang nhau" : "2 thang khac nhau";
+        System.out.println(rs);
+    }
 }
