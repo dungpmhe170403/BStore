@@ -5,7 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.entity.OrderItem;
 import model.entity.Product;
+import model.entity.User;
+import service.CartService;
 import service.ProductService;
 import service.ViewService;
 
@@ -14,7 +18,6 @@ import java.util.HashMap;
 
 @WebServlet(name = "ProductDetail", urlPatterns = {"/product-detail"})
 public class ProductDetailsController extends HttpServlet {
-
     HashMap<String, Object> viewData = new HashMap<>();
     ProductService productService;
 
@@ -46,5 +49,6 @@ public class ProductDetailsController extends HttpServlet {
         req.setAttribute("data", viewData);
         req.getRequestDispatcher("layout.jsp").forward(req, resp);
     }
+
 
 }

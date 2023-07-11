@@ -15,16 +15,12 @@ import java.util.HashMap;
 import java.util.Optional;
 
 public class ProductRepository extends Repository<Product> {
-
     private static ProductRepository productRepository;
     HashMap<String, Product> productMap;
     ProductImageRepository productImageRepository;
 
     public static ProductRepository getInstance() {
-        if (productRepository == null) {
-            productRepository = new ProductRepository();
-
-        }
+        productRepository = new ProductRepository();
         return productRepository;
     }
 
@@ -35,7 +31,7 @@ public class ProductRepository extends Repository<Product> {
         productMap = new HashMap<>();
         productImageRepository = ProductImageRepository.getInstance();
         // always join to get image
-        this.queryHelper.select("*").innerJoin("shoes_images", "products.id = shoes_images.shoes_id").joinned();
+        queryHelper.select("*").innerJoin("shoes_images", "products.id = shoes_images.shoes_id").joinned();
         System.out.println(queryHelper.toString());
     }
 
@@ -79,7 +75,7 @@ public class ProductRepository extends Repository<Product> {
         }
         if (condition.containsKey(FilterProduct.KEY)) {
             hasFilter = true;
-            tempSql.condition(String.format("name LIKE %%s%", condition.get(FilterProduct.KEY)));
+            tempSql.condition("name LIKE '%" + condition.get(FilterProduct.KEY) + "%'");
         }
         if (!hasFilter) {
             tempSql.noWhere();
@@ -112,5 +108,39 @@ public class ProductRepository extends Repository<Product> {
         QueryHelper sql = queryHelper.copy();
         sql.orderBy("created_at", SortOrder.DESC).limit(8 * 3);
         return getProducts(sql.build()).orElse(new ArrayList<>());
+    }
+
+    public Product saveProduct(Product data, ArrayList<String> imagePaths) {
+        queryHelper.destroy();
+        Product saved = this.save(data);
+        Product newProduct = getSavedProduct();
+        System.out.println(newProduct);
+        System.out.println(saved);
+        if (newProduct != null && saved != null) {
+            System.out.println("here");
+            for (String img : imagePaths) {
+                System.out.println(img);
+                productImageRepository.saveImage(img, newProduct.getId());
+            }
+        }
+        return newProduct;
+    }
+
+    private Product getSavedProduct() {
+        String sql = "SELECT * FROM [products] where id = (Select max(id) from products)";
+        return queryExecutor.records(sql, this).map(prods -> prods.get(0)).orElse(null);
+    }
+
+    public int updateProduct(int id, Product data) {
+        queryHelper.destroy();
+        return this.update(data, "id =" + id);
+    }
+
+    public int delete(int del) {
+        productImageRepository.deleteImage(del);
+        String deleteProduct = "DELETE products where id =" + del;
+        String sql = "DELETE order_item WHERE product_id =" + del;
+        int queryExecutor1 = new QueryExecutor<>().updateQuery(sql);
+        return queryExecutor.updateQuery(deleteProduct);
     }
 }

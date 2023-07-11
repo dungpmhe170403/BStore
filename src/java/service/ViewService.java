@@ -6,7 +6,6 @@ import model.repository.BrandRepository;
 import java.util.ArrayList;
 
 public class ViewService {
-
     private BrandRepository brandsBaseRepository;
     private static ViewService viewService;
     public static ArrayList<Brands> brands;
@@ -21,6 +20,7 @@ public class ViewService {
     private ViewService() {
         brandsBaseRepository = BrandRepository.getInstance();
     }
+
 
     public ArrayList<Brands> getAllBrands() {
         return brandsBaseRepository.getAllBrands();

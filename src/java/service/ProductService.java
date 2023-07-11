@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProductService {
-
     ProductRepository productRepository;
 
     public ProductService() {
@@ -26,8 +25,20 @@ public class ProductService {
         return new PaginationResponse<>(path, products);
     }
 
+
     public Product getProduct(int id) {
         return productRepository.getProduct(id);
     }
 
+    public Product saveProduct(Product data, ArrayList<String> imagePaths) {
+        return productRepository.saveProduct(data, imagePaths);
+    }
+
+    public int updateProduct(Product data, int id) {
+        return productRepository.updateProduct(id, data);
+    }
+
+    public int delete(int del) {
+        return productRepository.delete(del);
+    }
 }

@@ -16,7 +16,6 @@ import java.util.HashMap;
 
 @WebServlet(name = "Products", urlPatterns = {"/products"})
 public class ProductController extends HttpServlet {
-
     HashMap<String, Object> viewData = new HashMap<>();
     ProductService productService;
 

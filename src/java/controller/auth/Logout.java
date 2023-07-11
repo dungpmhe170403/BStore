@@ -14,14 +14,16 @@ public class Logout extends HttpServlet {
 
     public void init() {
     }
-
+    
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         session.removeAttribute("loggedIn");
         session.removeAttribute("user");
+        session.removeAttribute("cart");
+        session.invalidate();  
         response.sendRedirect(request.getContextPath() + "/home");
     }
-
+    
     public void destroy() {
     }
 }

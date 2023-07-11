@@ -2,6 +2,7 @@ package service;
 
 import model.entity.OrderItem;
 import model.repository.OrderItemRepository;
+import model.repository.ProductRepository;
 
 public class OrderItemService {
     OrderItemRepository orderItemRepository;

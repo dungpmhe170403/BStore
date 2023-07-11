@@ -15,17 +15,14 @@ import java.util.HashMap;
 
 @WebServlet(name = "edit", urlPatterns = {"/edit-user"})
 public class Edit extends HttpServlet {
-
     HashMap<String, Object> viewStatus;
     UserService userService;
 
     public void init() {
         // init dependency here
-        viewStatus = new HashMap<String, Object>() {
-            {
-                // if has some validtion use viewStatus to push more
-            }
-        };
+        viewStatus = new HashMap<String, Object>() {{
+            // if has some validtion use viewStatus to push more
+        }};
         userService = new UserService();
     }
 

@@ -40,7 +40,7 @@ public class QueryHelper {
         return new QueryHelper(queryBuilder.toString(), table);
     }
 
-    private void destroy() {
+    public void destroy() {
         isFirstOrderBy = true;
         isFirstGroupBy = true;
         orderByIsSet = false;

@@ -6,7 +6,6 @@ import model.repository.CartRepository;
 import model.repository.OrderItemRepository;
 
 public class CartService {
-
     CartRepository cartRepository;
     OrderItemRepository orderItemRepository;
 

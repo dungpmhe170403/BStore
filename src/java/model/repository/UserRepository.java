@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
+import model.entity.Product;
 
 public class UserRepository extends Repository<User> {
 
@@ -36,6 +37,7 @@ public class UserRepository extends Repository<User> {
                 .user_id(rs.getInt("user_id"))
                 .address(rs.getString("address"))
                 .email(rs.getString("email"))
+                .role(rs.getString("role"))
                 .build();
     }
 
@@ -72,10 +74,16 @@ public class UserRepository extends Repository<User> {
     public User save(User data) {
         cartRepository = CartRepository.getInstance();
         User user = super.save(data);
+        if(user == null) {return null;};
+        User newUser = getSavedUser();
         Cart cart = Cart.builder()
-                .user_id((int) data.getUser_id())
+                .user_id((int) newUser.getUser_id())
                 .build();
         cartRepository.save(cart);
         return user;
+    }
+    private User getSavedUser() {
+        String sql = "SELECT * FROM [user] where user_id = (Select max(user_id) from [user])";
+        return queryExecutor.records(sql, this).map(prods -> prods.get(0)).orElse(null);
     }
 }

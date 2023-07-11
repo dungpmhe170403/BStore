@@ -62,9 +62,8 @@
         <ul>
             <li class="active"><a href="./home">Home</a></li>
             <li><a href="./products">Shop</a></li>
-            <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-            <li><a href="./checkout.html">Check Out</a></li>
-            </li>
+            <li><a href="./cart">Shoping Cart</a></li>
+            <li><a href="./check-out">Check Out</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -143,8 +142,8 @@
                     <ul>
                         <li class="active"><a href="./home">Home</a></li>
                         <li><a href="./products">Shop</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
+                        <li><a href="./cart">Shoping Cart</a></li>
+                        <li><a href="./check-out">Check Out</a></li>
                     </ul>
                 </nav>
             </div>
