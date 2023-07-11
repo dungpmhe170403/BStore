@@ -223,17 +223,17 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="img/brands/Puma.png">
-                        <h5><a href="./products?page=1&brand=4">Pulma</a></h5>
+                        <h5><a href="./products?page=1&brand=4">Puma</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="img/brands/Under-Armour.png">
-                        <h5><a href="./products?page=1&brand=5">Under Amor</a></h5>
+                        <h5><a href="./products?page=1&brand=5">Under Armor</a></h5>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="categories__item set-bg" data-setbg="img/brands/New-Balance.png">
-                        <h5><a href="./products?page=1&brand=6">New Blance</a></h5>
+                        <h5><a href="./products?page=1&brand=6">New Balance</a></h5>
                     </div>
                 </div>
             </div>

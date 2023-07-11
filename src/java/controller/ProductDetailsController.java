@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 @WebServlet(name = "ProductDetail", urlPatterns = {"/product-detail"})
 public class ProductDetailsController extends HttpServlet {
+
     HashMap<String, Object> viewData = new HashMap<>();
     ProductService productService;
 
@@ -37,6 +38,7 @@ public class ProductDetailsController extends HttpServlet {
                 if (product != null) {
                     viewData.put("product", product);
                 } else {
+                    System.out.println("notfound");
                     viewData.replace("view", "notfound.jsp");
                 }
             } catch (Exception e) {
@@ -49,6 +51,5 @@ public class ProductDetailsController extends HttpServlet {
         req.setAttribute("data", viewData);
         req.getRequestDispatcher("layout.jsp").forward(req, resp);
     }
-
 
 }

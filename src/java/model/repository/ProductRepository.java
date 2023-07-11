@@ -11,10 +11,12 @@ import ultis.DBHelper.repository.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Optional;
 
 public class ProductRepository extends Repository<Product> {
+
     private static ProductRepository productRepository;
     HashMap<String, Product> productMap;
     ProductImageRepository productImageRepository;
@@ -60,7 +62,6 @@ public class ProductRepository extends Repository<Product> {
         QueryHelper sqlHelper = queryHelper.copy();
         String sql = sqlHelper.where().condition("id =" + id).endCondition().build();
         queryExecutor.records(sql, this::joinMapper);
-        System.out.println();
         return getProducts(sql).map(products -> products.get(0)).orElse(null);
     }
 
@@ -83,17 +84,20 @@ public class ProductRepository extends Repository<Product> {
         tempSql.endCondition();
         QueryHelper getCount = tempSql.copy();
         getCount.count();
-        if (condition.containsKey(FilterProduct.PRICE)) {
-            String order = condition.get(FilterProduct.PRICE);
-            //end condition
-            tempSql.orderBy("price", order.equalsIgnoreCase(SortOrder.ASC.toString()) ? SortOrder.ASC : SortOrder.DESC);
-            System.out.println(queryHelper.queryBuilder.toString() + "Add orderBy");
-        }
-        QueryHelper paginationLimit = tempSql.offsetCount(pagination.offset * 3).limit(pagination.limit * 3);
+        QueryHelper paginationLimit = tempSql.offsetCount(pagination.offset * 3).limitCount(pagination.limit * 3);
         Optional<ArrayList<Integer>> rows = new QueryExecutor<Integer>().records(getCount.build(), rs -> rs.getInt(1));
         pagination.totalItems = rows.map(data -> data.get(0)).orElse(0);
         pagination.calculateTotalPages();
         ArrayList<Product> products = getProducts(paginationLimit.build()).orElse(new ArrayList<>());
+        if (condition.containsKey(FilterProduct.PRICE)) {
+            Comparator<Product> comparePrice = null;
+            if (condition.get(FilterProduct.PRICE).equalsIgnoreCase(SortOrder.ASC.toString())) {
+                comparePrice = (p1, p2) -> Float.compare(p1.getPrice(), p2.getPrice());
+            } else {
+                comparePrice = (p1, p2) -> Float.compare(p2.getPrice(), p1.getPrice());
+            }
+            products.sort(comparePrice);
+        }
         pagination.setData(products);
         return pagination;
     }
