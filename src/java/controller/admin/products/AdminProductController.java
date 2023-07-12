@@ -1,4 +1,4 @@
-    package controller.admin.products;
+package controller.admin.products;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,10 +19,13 @@ import static controller.admin.products.AuthAdmin.isAdmin;
 
 @WebServlet(name = "adminProduct", urlPatterns = {"/admin-products"})
 public class AdminProductController extends HttpServlet {
+
     HashMap<String, Object> viewData = new HashMap<>();
     ProductService productService;
 
     public void init() {
+        ViewService viewService = ViewService.getInstance();
+        viewData.put("brands", viewService.getAllBrands());
         viewData.put("view", "products.jsp");
         productService = new ProductService();
     }
@@ -38,6 +41,7 @@ public class AdminProductController extends HttpServlet {
             response.sendRedirect("./admin-products?page=1");
             return;
         }
+        //tim kiem
         if (request.getParameter("q") != null) {
             session.setAttribute("q", request.getParameter("q"));
             sortCondition.put(FilterProduct.KEY, request.getParameter("q"));

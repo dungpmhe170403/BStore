@@ -38,6 +38,7 @@ public class ProductController extends HttpServlet {
             if (request.getParameter("brand") != null) {
                 sortCondition.put(FilterProduct.BRAND, request.getParameter("brand"));
             }
+            //tim kiem
             if (request.getParameter("q") != null) {
                 sortCondition.put(FilterProduct.BRAND, request.getParameter("q"));
             }

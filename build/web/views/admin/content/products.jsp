@@ -78,48 +78,51 @@
                         </div>
                         <div class="card-body">
                             <table
-                                    id="example2"
-                                    class="table table-bordered table-hover"
-                            >
+                                id="example2"
+                                class="table table-bordered table-hover"
+                                >
                                 <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Image</th>
-                                    <th>Price</th>
-                                    <th>
-                                        <a class="btn btn-primary" href="./admin-add-products">
-                                            + Add Products
-                                        </a>
-                                    </th>
-                                </tr>
+                                    <tr>
+                                        <!--                                       cac col-->
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Brand ID</th>
+                                        <th>Price</th>
+                                        <th>
+                                            <a class="btn btn-primary" href="./admin-add-products">
+                                                + Add Products
+                                            </a>
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="item" items="${data['products']}">
-                                    <tr>
-                                        <td><a href="./product-detail?id=${item.id}">${item.name}</a>
-                                        </td>
-                                        <td>
-                                            <img
+                                    <c:forEach var="item" items="${data['products']}">
+                                        <tr>
+                                            <td><a href="./product-detail?id=${item.id}">${item.name}</a>
+                                            </td>
+                                            <td>
+                                                <img
                                                     style="width: 150px; aspect-ratio: 1"
                                                     src="img/products/${item.images[0].image_path}"
                                                     alt=""/>
-                                        </td>
-                                        <td>
-                                            $${item.price}
-                                        </td>
-                                        <td class="project-actions text-right">
-                                            <a class="btn btn-info btn-sm"
-                                               href="./admin-edit-products?shoes_id=${item.id}">
-                                                <i class="fas fa-pencil-alt"> </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm delete-product" href="#" data-delete="${item.id}">
-                                                <i class="fas fa-trash"> </i>
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
+                                            </td>
+                                            <td>${item.brand}</td>
+                                            <td>
+                                                $${item.price}
+                                            </td>
+                                            <td class="project-actions text-right">
+                                                <a class="btn btn-info btn-sm"
+                                                   href="./admin-edit-products?shoes_id=${item.id}">
+                                                    <i class="fas fa-pencil-alt"> </i>
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm delete-product" href="#" data-delete="${item.id}">
+                                                    <i class="fas fa-trash"> </i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -146,6 +149,9 @@
 <script src="js/jquery.slicknav.js"></script>
 <script>
     $(".delete-product").click((event) => {
+        if (window.confirm("Do you want to delete this shoes?")) {
+
+        } ;
         let itemId = $(event.currentTarget).attr("data-delete");
         let rowElement = $(event.currentTarget).closest("tr");
         $.ajax({
@@ -159,5 +165,6 @@
                 console.log('Error:', error);
             }
         });
-    })
+    });
+    
 </script>

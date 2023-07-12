@@ -15,7 +15,9 @@ public class Repository<T> extends Model implements EntityMapper<T> {
     protected String table;
     // define cac cols cho UPDATE INSERT DELETE
     private ArrayList<String> fillable;
+    // de ho giup vt cau truy van
     protected QueryHelper queryHelper;
+    // de thuc hien cau truy van
     protected QueryExecutor<T> queryExecutor;
 
     public void init() {
@@ -25,11 +27,15 @@ public class Repository<T> extends Model implements EntityMapper<T> {
         queryExecutor = new QueryExecutor<>();
     }
     @Override
+    // dc implement tu entity mapper, interface giup 1 entityDao co the dinh nghia cach map dulieu vao object
     public T mapper(ResultSet rs) throws SQLException {
         return null;
     }
-
+// save de luu
     public T save(T data) {
+        // vt ham covert entity to hashmap de chuyen doi tu object sang hashmap 
+        // trong cau lenh insert se chuyen doi hashmap co dang (col,col2,col3) Values (valu1,value2,value3) 
+        // dung trong vc thuc hien cau truy van thay vi dung ps.set 
         HashMap<String, Object> objData = Convert.convertEntityToHashMap(data, fillable);
         String sql = queryHelper.insert(objData).build();
         if (queryExecutor.updateQuery(sql) > 0) {

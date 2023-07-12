@@ -5,7 +5,7 @@ import model.helper.type.FilterProduct;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
-
+// class giup ben view nhan dc respon 1 cach phu hop gom links va trang hien tai
 public class PaginationResponse<T> {
     private String pathUrl;
     public ArrayList<String> links;

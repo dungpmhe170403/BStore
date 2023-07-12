@@ -5,6 +5,7 @@ import model.entity.OrderItem;
 import model.repository.CartRepository;
 import model.repository.OrderItemRepository;
 
+// lop service la lop trung gian de xu ly logic du lieu dc lay ra tu database
 public class CartService {
     CartRepository cartRepository;
     OrderItemRepository orderItemRepository;

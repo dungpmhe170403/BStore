@@ -3,10 +3,46 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/BStore/src/java/ultis/Helper.java</file>
-            <file>file:/D:/BStore/src/java/config/app.properties</file>
+            <file>file:/D:/BStore/src/java/model/repository/UserRepository.java</file>
+            <file>file:/D:/BStore/src/java/service/UserService.java</file>
+            <file>file:/D:/BStore/src/java/model/repository/ProductRepository.java</file>
+            <file>file:/D:/BStore/src/java/model/entity/ProductImage.java</file>
+            <file>file:/D:/BStore/web/views/admin/content/products.jsp</file>
+            <file>file:/D:/BStore/web/img/products/adidas2.jpg</file>
             <file>file:/D:/BStore/src/java/controller/auth/SignUp.java</file>
+            <file>file:/D:/BStore/src/java/controller/auth/Login.java</file>
+            <file>file:/D:/BStore/src/java/ultis/DBHelper/query/QueryHelper.java</file>
+            <file>file:/D:/BStore/src/java/controller/CartController.java</file>
+            <file>file:/D:/BStore/src/java/ultis/DBHelper/bound/PaginationResponse.java</file>
+            <file>file:/D:/BStore/src/java/model/repository/BrandRepository.java</file>
+            <file>file:/D:/BStore/src/java/controller/admin/products/AddProductController.java</file>
+            <file>file:/D:/BStore/src/java/controller/ProductDetailsController.java</file>
             <file>file:/D:/BStore/src/java/filter/AuthFilter.java</file>
+            <file>file:/D:/BStore/src/java/service/CartService.java</file>
+            <file>file:/D:/BStore/src/java/connection/SQLServerConnection.java</file>
+            <file>file:/D:/BStore/src/java/controller/auth/Edit.java</file>
+            <file>file:/D:/BStore/src/java/controller/admin/products/AuthAdmin.java</file>
+            <file>file:/D:/BStore/src/java/controller/CheckOutController.java</file>
+            <file>file:/D:/BStore/web/views/home.jsp</file>
+            <file>file:/D:/BStore/web/index.jsp</file>
+            <file>file:/D:/BStore/src/java/ultis/Helper.java</file>
+            <file>file:/D:/BStore/src/java/controller/admin/products/EditProductController.java</file>
+            <file>file:/D:/BStore/src/java/service/OrderItemService.java</file>
+            <file>file:/D:/BStore/src/java/model/entity/OrderItem.java</file>
+            <file>file:/D:/BStore/web/img/products/29c8df20-b126-4189-a04c-4e031495814a.jpg</file>
+            <file>file:/D:/BStore/src/java/service/ProductService.java</file>
+            <file>file:/D:/BStore/src/java/model/repository/ProductImageRepository.java</file>
+            <file>file:/D:/BStore/src/java/ultis/DBHelper/bound/Pagination.java</file>
+            <file>file:/D:/BStore/src/java/config/app.properties</file>
+            <file>file:/D:/BStore/web/layout.jsp</file>
+            <file>file:/D:/BStore/src/java/controller/auth/Logout.java</file>
+            <file>file:/D:/BStore/src/java/service/OrderService.java</file>
+            <file>file:/D:/BStore/web/img/products/bf4a8eb7-e0dd-41c8-a390-6b3155e58ef1.jpg</file>
+            <file>file:/D:/BStore/src/java/model/entity/Brands.java</file>
+            <file>file:/D:/BStore/src/java/controller/HomeController.java</file>
+            <file>file:/D:/BStore/src/java/controller/admin/products/AdminProductController.java</file>
+            <file>file:/D:/BStore/src/java/model/repository/CartRepository.java</file>
+            <file>file:/D:/BStore/src/java/ultis/DBHelper/repository/Repository.java</file>
         </group>
     </open-files>
 </project-private>

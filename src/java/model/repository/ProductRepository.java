@@ -59,10 +59,17 @@ public class ProductRepository extends Repository<Product> {
     }
 
     public Product getProduct(int id) {
+        productMap = new HashMap<>();
+
         QueryHelper sqlHelper = queryHelper.copy();
         String sql = sqlHelper.where().condition("id =" + id).endCondition().build();
         queryExecutor.records(sql, this::joinMapper);
-        return getProducts(sql).map(products -> products.get(0)).orElse(null);
+        ArrayList<Product> productsList = getProducts(sql).map(products -> products).orElse(new ArrayList<>());
+        if (productsList.size() > 0) {
+            return productsList.get(0);
+        } else {
+            return null;
+        }
     }
 
     public Pagination<Product> getPaginationProduct(int pageNumber, HashMap<FilterProduct, String> condition) {

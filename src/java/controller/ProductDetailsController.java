@@ -37,15 +37,17 @@ public class ProductDetailsController extends HttpServlet {
                 Product product = productService.getProduct(id);
                 if (product != null) {
                     viewData.put("product", product);
+                    viewData.replace("view", "shop-details.jsp");
                 } else {
                     System.out.println("notfound");
                     viewData.replace("view", "notfound.jsp");
                 }
             } catch (Exception e) {
+                System.out.println("found error");
                 e.printStackTrace();
-                viewData.replace("view", "notfound.jsp");
             }
         } else {
+            System.out.println("found error id");
             viewData.replace("view", "notfound.jsp");
         }
         req.setAttribute("data", viewData);

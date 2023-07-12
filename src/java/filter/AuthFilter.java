@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Arrays;
 
+// yeu cau nguoi dung vao gio hang thi phai dang nhap
 @WebFilter("/cart")
 public class AuthFilter implements Filter {
 

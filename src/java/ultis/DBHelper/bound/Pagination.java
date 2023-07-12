@@ -4,7 +4,7 @@ import model.helper.type.FilterProduct;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+// giup dinh nghia cac du lieu tra ra theo phan trang
 public class Pagination<T> {
     private final int PAGE_SIZE = 15;
     public int showPageLinks = 3;
